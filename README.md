@@ -10,3 +10,10 @@ My goal is to strengthen my Data Structures & Algorithms skills, improve problem
 - Learn new DSA concepts
 - Analyze Time & Space Complexity
 - Stay consistent for 365 days
+
+- ## 📈 Progress Tracker
+
+| Day | Problem | Difficulty | Topic | Solution |
+|-----|----------|------------|--------|----------|
+| 1 | Two Sum | Easy | Arrays, HashMap | ✅ |
+
