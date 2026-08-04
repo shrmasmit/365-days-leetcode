@@ -1,1 +1,93 @@
+# 🚀 Day 1 - Two Sum
 
+## 📌 Problem
+**LeetCode #1 - Two Sum**
+
+Given an array of integers `nums` and an integer `target`, return the indices of the two numbers such that they add up to the target.
+
+---
+
+## 🏷️ Difficulty
+Easy
+
+---
+
+## 📚 Topic
+- Arrays
+- Hash Map
+
+---
+
+## 💡 Approach
+
+I used a Hash Map (`unordered_map`) to store each number and its index while iterating through the array.
+
+For every element:
+1. Calculate its complement (`target - nums[i]`).
+2. Check if the complement already exists in the Hash Map.
+3. If found, return both indices.
+4. Otherwise, store the current number and its index.
+
+This avoids checking every possible pair and reduces the overall time complexity.
+
+---
+
+## ⚡ Complexity
+
+- **Time Complexity:** O(n)
+- **Space Complexity:** O(n)
+
+---
+
+## 📝 Key Learnings
+
+- Hash Maps provide average O(1) lookup time.
+- Choosing the right data structure can significantly improve efficiency.
+- Always analyze time and space complexity after solving a problem.
+
+---
+
+## ✅ Status
+
+Accepted ✔️
+
+
+##  Code for TwoSum
+
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> mp;
+
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+
+            if (mp.find(complement) != mp.end()) {
+                return {mp[complement], i};
+            }
+
+            mp[nums[i]] = i;
+        }
+
+        return {};
+    }
+};
+
+int main() {
+    vector<int> nums = {2, 7, 11, 15};
+    int target = 9;
+
+    Solution obj;
+    vector<int> ans = obj.twoSum(nums, target);
+
+    cout << "Indices: ";
+    for (int x : ans)
+        cout << x << " ";
+
+    return 0;
+}
