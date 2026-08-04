@@ -1,1 +1,72 @@
-Da
+# Day 2 - Binary Search
+
+## Problem
+704. Binary Search
+
+## Topic
+Binary Search
+
+## Difficulty
+Easy
+
+## Approach
+Use two pointers (left and right) to repeatedly divide the search space in half. Compare the middle element with the target and eliminate the half where the target cannot exist.
+
+## Time Complexity
+O(log n)
+
+## Space Complexity
+O(1)
+
+## Key Learning
+- Binary Search works only on sorted arrays.
+- Use `mid = left + (right - left) / 2` to avoid integer overflow.
+- Each iteration reduces the search space by half.
+
+
+#Code Binary Search
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int left = 0;
+        int right = nums.size() - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            }
+            else if (nums[mid] < target) {
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+};
+
+int main() {
+    vector<int> nums = {-1, 0, 3, 5, 9, 12};
+    int target = 9;
+
+    Solution obj;
+    int result = obj.search(nums, target);
+
+    if (result != -1) {
+        cout << "Target found at index: " << result << endl;
+    } else {
+        cout << "Target not found." << endl;
+    }
+
+    return 0;
+}
