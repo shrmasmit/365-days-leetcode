@@ -16,6 +16,5 @@ My goal is to strengthen my Data Structures & Algorithms skills, improve problem
 | Day | Problem | Difficulty | Topic | Solution |
 |-----|----------|------------|--------|----------|
 | 1 | Two Sum | Easy | Arrays, HashMap | ✅ |
-|-----|---------|------|------------|------------|
 | 2 | Binary Search | Easy | Vector |  ✅ |
 
