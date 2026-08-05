@@ -1,0 +1,87 @@
+# 🚀 Day 3 - Palindrome Number
+
+## 📌 Problem
+**LeetCode #9 - Palindrome Number**
+
+Determine whether an integer is a palindrome without converting it to a string.
+
+---
+
+## 🏷️ Difficulty
+Easy
+
+---
+
+## 📚 Topic
+- Math
+- Number Manipulation
+
+---
+
+## 💡 Approach
+
+Instead of reversing the entire number, reverse only half of it.
+
+- Negative numbers are never palindromes.
+- If a number ends with 0 (except 0 itself), it cannot be a palindrome.
+- Reverse digits until the reversed half becomes greater than or equal to the remaining half.
+- Compare both halves.
+
+---
+
+## ⚡ Complexity
+
+- **Time Complexity:** O(log₁₀ n)
+- **Space Complexity:** O(1)
+
+---
+
+## 📝 Key Learnings
+
+- Reversing only half the digits avoids integer overflow.
+- Mathematical solutions can be more efficient than string-based solutions.
+- Handle edge cases before implementing the main logic.
+
+---
+
+## ✅ Status
+
+Accepted ✔️
+
+
+
+## Code
+
+
+#include <iostream>
+using namespace std;
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if (x < 0 || (x % 10 == 0 && x != 0))
+            return false;
+
+        int reversedHalf = 0;
+
+        while (x > reversedHalf) {
+            reversedHalf = reversedHalf * 10 + x % 10;
+            x /= 10;
+        }
+
+        return (x == reversedHalf || x == reversedHalf / 10);
+    }
+};
+
+int main() {
+    Solution obj;
+
+    int x = 121;
+
+    if (obj.isPalindrome(x))
+        cout << "true";
+    else
+        cout << "false";
+
+    return 0;
+}
