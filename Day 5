@@ -1,0 +1,111 @@
+# 🚀 Day 5 - Maximum Subarray
+
+## 📌 Problem
+**LeetCode #53 - Maximum Subarray**
+
+Given an integer array `nums`, find the subarray with the largest sum and return its sum.
+
+A subarray must contain contiguous elements.
+
+---
+
+## 🏷️ Difficulty
+Medium
+
+---
+
+## 📚 Topic
+
+- Arrays
+- Kadane's Algorithm
+- Dynamic Programming
+- Greedy
+
+---
+
+## 💡 Approach
+
+I used Kadane's Algorithm.
+
+For every element, I decide whether to:
+
+1. Start a new subarray from the current element.
+2. Continue the previous subarray.
+
+The formula is:
+
+`currentSum = max(nums[i], currentSum + nums[i])`
+
+Then I update the maximum sum found so far.
+
+---
+
+## ⚡ Complexity
+
+- Time Complexity: O(n)
+- Space Complexity: O(1)
+
+---
+
+## 📝 Key Learnings
+
+- Kadane's Algorithm solves Maximum Subarray efficiently.
+- A negative running sum can be discarded because it will only decrease a future sum.
+- The algorithm works correctly even when all elements are negative.
+- This problem is a good introduction to dynamic programming and greedy thinking.
+
+---
+
+## 🧪 Example
+
+Input:
+
+`[-2,1,-3,4,-1,2,1,-5,4]`
+
+Maximum Subarray:
+
+`[4,-1,2,1]`
+
+Output:
+
+`6`
+
+---
+
+## ✅ Status
+
+Accepted ✔️
+
+
+## Code
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int currentSum = nums[0];
+        int maxSum = nums[0];
+
+        for (int i = 1; i < nums.size(); i++) {
+            currentSum = max(nums[i], currentSum + nums[i]);
+            maxSum = max(maxSum, currentSum);
+        }
+
+        return maxSum;
+    }
+};
+
+int main() {
+    Solution obj;
+
+    vector<int> nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+
+    cout << "Maximum Subarray Sum: "
+         << obj.maxSubArray(nums);
+
+    return 0;
+}
