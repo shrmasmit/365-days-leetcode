@@ -20,4 +20,5 @@ My goal is to strengthen my Data Structures & Algorithms skills, improve problem
 | 3 | Palindrome Number | Easy | Math, Number Manipulation | ✅ |
 | 4 | Best Time to Buy and Sell Stock | Easy | Arrays, Greedy | ✅ |
 | 5 | Maximum Subarray | Medium | Arrays | ✅ |
+| 6 | Remove Duplicates from Sorted Array | Easy | Arrays,2 Pointer | ✅ |
 
