@@ -21,4 +21,5 @@ My goal is to strengthen my Data Structures & Algorithms skills, improve problem
 | 4 | Best Time to Buy and Sell Stock | Easy | Arrays, Greedy | ✅ |
 | 5 | Maximum Subarray | Medium | Arrays | ✅ |
 | 6 | Remove Duplicates from Sorted Array | Easy | Arrays,2 Pointer | ✅ |
+| 7 | Rotate Array | Medium | Arrays Two Pointers Reversal Algorithm In-Place | ✅ |
 
