@@ -1,0 +1,118 @@
+# 🚀 Day 8 - Move Zeroes
+
+## 📌 Problem
+
+**LeetCode #283 - Move Zeroes**
+
+Given an integer array, move all 0s to the end while
+maintaining the relative order of non-zero elements.
+
+The solution must be performed in-place.
+
+---
+
+## 🏷️ Difficulty
+
+Easy
+
+---
+
+## 📚 Topics
+
+- Arrays
+- Two Pointers
+- In-place Algorithm
+
+---
+
+## 💡 Approach
+
+I used the Two Pointer technique.
+
+- `i` scans the array.
+- `j` tracks the position of the next non-zero element.
+
+Whenever nums[i] is non-zero, swap it with nums[j]
+and move j forward.
+
+This keeps all non-zero elements in their original
+relative order while moving zeroes toward the end.
+
+---
+
+## 🧪 Example
+
+Input:
+
+[0,1,0,3,12]
+
+Output:
+
+[1,3,12,0,0]
+
+---
+
+## ⚡ Complexity
+
+- Time Complexity: O(n)
+- Space Complexity: O(1)
+
+---
+
+## 📝 Key Learning
+
+Two pointers can efficiently modify an array in-place
+without requiring additional memory.
+
+---
+
+## 🎯 Interview Tip
+
+For in-place array rearrangement while preserving
+relative order, consider the Two Pointer technique.
+
+---
+
+## ✅ Status
+
+Accepted ✔️
+
+##Code
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+
+        int j = 0;
+
+        for (int i = 0; i < nums.size(); i++) {
+
+            if (nums[i] != 0) {
+                swap(nums[i], nums[j]);
+                j++;
+            }
+        }
+    }
+};
+
+int main() {
+
+    Solution obj;
+
+    vector<int> nums = {0, 1, 0, 3, 12};
+
+    obj.moveZeroes(nums);
+
+    cout << "Array after moving zeroes: ";
+
+    for (int x : nums) {
+        cout << x << " ";
+    }
+
+    return 0;
+}
