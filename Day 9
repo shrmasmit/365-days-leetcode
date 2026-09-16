@@ -1,0 +1,135 @@
+# 🚀 Day 9 - Missing Number
+
+## 📌 Problem
+
+**LeetCode #268 - Missing Number**
+
+Given an array containing n distinct numbers in the range
+[0, n], return the only number missing from the array.
+
+---
+
+## 🏷️ Difficulty
+
+Easy
+
+---
+
+## 📚 Topics
+
+- Arrays
+- Math
+- Bit Manipulation
+- XOR
+
+---
+
+## 💡 Approach
+
+I used the XOR technique.
+
+Important properties:
+
+x ^ x = 0
+
+x ^ 0 = x
+
+By XORing all numbers from 0 to n with all elements
+of the array, every number that appears twice cancels out.
+
+The remaining number is the missing number.
+
+---
+
+## 🧪 Example
+
+Input:
+
+[3,0,1]
+
+Output:
+
+2
+
+---
+
+## 🔍 XOR Logic
+
+Numbers from 0 to n:
+
+0 ^ 1 ^ 2 ^ 3
+
+Array:
+
+3 ^ 0 ^ 1
+
+Common elements cancel.
+
+Remaining:
+
+2
+
+---
+
+## ⚡ Complexity
+
+Time Complexity: O(n)
+
+Space Complexity: O(1)
+
+---
+
+## 📝 Key Learning
+
+XOR is a powerful technique for finding missing
+or unique elements.
+
+---
+
+## 🎯 Interview Tip
+
+For an array containing numbers from 0 to n
+with exactly one missing number, consider
+the XOR technique or mathematical sum formula.
+
+---
+
+## ✅ Status
+
+##Code
+
+  #include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+
+        int n = nums.size();
+        int ans = n;
+
+        for (int i = 0; i < n; i++) {
+            ans ^= i;
+            ans ^= nums[i];
+        }
+
+        return ans;
+    }
+};
+
+int main() {
+
+    Solution obj;
+
+    vector<int> nums = {3, 0, 1};
+
+    int answer = obj.missingNumber(nums);
+
+    cout << "Missing Number: " << answer << endl;
+
+    return 0;
+}
+
+Accepted ✔️
