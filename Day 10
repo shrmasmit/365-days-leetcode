@@ -1,0 +1,147 @@
+# 🚀 Day 10 - Max Consecutive Ones
+
+## 📌 Problem
+
+**LeetCode #485 - Max Consecutive Ones**
+
+Given a binary array nums, return the maximum number
+of consecutive 1s in the array.
+
+---
+
+## 🏷️ Difficulty
+
+Easy
+
+---
+
+## 📚 Topics
+
+- Arrays
+- Two Pointers
+- Sliding Window
+- Counting
+
+---
+
+## 💡 Approach
+
+Use a single pass through the array.
+
+Maintain two variables:
+
+- `count` → current consecutive 1s
+- `maxLen` → maximum consecutive 1s
+
+When the current element is 1:
+
+count++
+
+When the current element is 0:
+
+count = 0
+
+Update maxLen whenever we find a longer sequence.
+
+---
+
+## 🧪 Example
+
+Input:
+
+[1,1,0,1,1,1]
+
+Output:
+
+3
+
+---
+
+## 🔍 Dry Run
+
+1 → count = 1
+1 → count = 2
+0 → count = 0
+1 → count = 1
+1 → count = 2
+1 → count = 3
+
+Maximum = 3
+
+---
+
+## ⚡ Complexity
+
+Time Complexity: O(n)
+
+Space Complexity: O(1)
+
+---
+
+## 📝 Key Learning
+
+A simple counter and maximum tracker can solve
+the problem efficiently in a single traversal.
+
+---
+
+## 🎯 Interview Pattern
+
+For longest consecutive sequences:
+
+- Count the current sequence.
+- Reset when the sequence breaks.
+- Keep track of the maximum.
+
+---
+
+## ✅ Status
+
+Accepted ✔️
+
+
+##code
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+
+        int count = 0;
+        int maxLen = 0;
+
+        for (int num : nums) {
+
+            if (num == 1) {
+                count++;
+                maxLen = max(maxLen, count);
+            }
+            else {
+                count = 0;
+            }
+        }
+
+        return maxLen;
+    }
+};
+
+int main() {
+
+    Solution obj;
+
+    vector<int> nums = {1, 1, 0, 1, 1, 1};
+
+    int answer = obj.findMaxConsecutiveOnes(nums);
+
+    cout << "Max Consecutive 1s: " << answer << endl;
+
+    return 0;
+}
+
+
+
