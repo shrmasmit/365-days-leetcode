@@ -1,0 +1,156 @@
+# 🚀 Day 11 - Sort Colors
+
+## 📌 Problem
+
+**LeetCode #75 - Sort Colors**
+
+Given an array containing only 0, 1 and 2,
+sort the array in-place.
+
+The order should be:
+
+0 → 1 → 2
+
+The library sort function cannot be used.
+
+---
+
+## 🏷️ Difficulty
+
+Medium
+
+---
+
+## 📚 Topics
+
+- Arrays
+- Two Pointers
+- Three Pointers
+- Dutch National Flag
+- In-place Algorithm
+
+---
+
+## 💡 Approach
+
+I used the Dutch National Flag Algorithm.
+
+Three pointers are maintained:
+
+- `low` → next position for 0
+- `mid` → current element
+- `high` → next position for 2
+
+### Cases
+
+If nums[mid] == 0:
+
+swap(low, mid)
+low++
+mid++
+
+If nums[mid] == 1:
+
+mid++
+
+If nums[mid] == 2:
+
+swap(mid, high)
+high--
+
+We do not increment `mid` after processing a 2
+because the swapped element has not been examined yet.
+
+---
+
+## 🧪 Example
+
+Input:
+
+[2,0,2,1,1,0]
+
+Output:
+
+[0,0,1,1,2,2]
+
+---
+
+## ⚡ Complexity
+
+Time Complexity: O(n)
+
+Space Complexity: O(1)
+
+---
+
+## 📝 Key Learning
+
+The Dutch National Flag Algorithm is an important
+three-pointer technique for in-place partitioning.
+
+---
+
+## 🎯 Interview Tip
+
+When an array contains three categories of elements
+and needs to be partitioned in-place, think about
+the Dutch National Flag Algorithm.
+
+---
+
+## ✅ Status
+
+Accepted ✔️
+
+
+## Code 
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+
+        int low = 0;
+        int mid = 0;
+        int high = nums.size() - 1;
+
+        while (mid <= high) {
+
+            if (nums[mid] == 0) {
+                swap(nums[low], nums[mid]);
+                low++;
+                mid++;
+            }
+
+            else if (nums[mid] == 1) {
+                mid++;
+            }
+
+            else {
+                swap(nums[mid], nums[high]);
+                high--;
+            }
+        }
+    }
+};
+
+int main() {
+
+    Solution obj;
+
+    vector<int> nums = {2, 0, 2, 1, 1, 0};
+
+    obj.sortColors(nums);
+
+    cout << "Sorted Colors: ";
+
+    for (int x : nums) {
+        cout << x << " ";
+    }
+
+    return 0;
+}
