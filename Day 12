@@ -1,0 +1,155 @@
+# 🚀 Day 12 - Majority Element
+
+## 📌 Problem
+
+**LeetCode #169 - Majority Element**
+
+Given an integer array nums of size n, return the
+majority element.
+
+The majority element is the element that appears
+more than n/2 times.
+
+A majority element is guaranteed to exist.
+
+---
+
+## 🏷️ Difficulty
+
+Easy
+
+---
+
+## 📚 Topics
+
+- Arrays
+- Hashing
+- Divide & Conquer
+- Boyer-Moore Voting Algorithm
+
+---
+
+## 💡 Approach
+
+I used the Boyer-Moore Voting Algorithm.
+
+Maintain two variables:
+
+- `candidate`
+- `count`
+
+If count becomes 0, choose the current element
+as the new candidate.
+
+If the current element is equal to the candidate:
+
+count++
+
+Otherwise:
+
+count--
+
+Since the majority element appears more than n/2
+times, it survives the cancellation process.
+
+---
+
+## 🧪 Example
+
+Input:
+
+[2,2,1,1,1,2,2]
+
+Output:
+
+2
+
+---
+
+## 🔍 Dry Run
+
+2 → candidate = 2, count = 1
+2 → count = 2
+1 → count = 1
+1 → count = 0
+1 → new candidate = 1
+2 → count = 0
+2 → new candidate = 2
+
+Final answer:
+
+2
+
+---
+
+## ⚡ Complexity
+
+Time Complexity: O(n)
+
+Space Complexity: O(1)
+
+---
+
+## 📝 Key Learning
+
+The Boyer-Moore Voting Algorithm can find a majority
+element in one pass using constant extra space.
+
+---
+
+## 🎯 Interview Pattern
+
+If an element appears more than n/2 times,
+think about Boyer-Moore Voting.
+
+---
+
+## ✅ Status
+
+
+
+##Code 
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+
+        int candidate = 0;
+        int count = 0;
+
+        for (int num : nums) {
+
+            if (count == 0) {
+                candidate = num;
+            }
+
+            if (num == candidate) {
+                count++;
+            }
+            else {
+                count--;
+            }
+        }
+
+        return candidate;
+    }
+};
+
+int main() {
+
+    Solution obj;
+
+    vector<int> nums = {2, 2, 1, 1, 1, 2, 2};
+
+    int answer = obj.majorityElement(nums);
+
+    cout << "Majority Element: " << answer << endl;
+
+    return 0;
+}
+
+Accepted ✔️
