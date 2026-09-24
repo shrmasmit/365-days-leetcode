@@ -1,0 +1,144 @@
+# 🚀 Day 14 - Longest Consecutive Sequence
+
+## 📌 Problem
+
+LeetCode #128 - Longest Consecutive Sequence
+
+Given an unsorted array, find the length of the
+longest consecutive elements sequence.
+
+---
+
+## 🏷️ Difficulty
+
+Medium
+
+---
+
+## 📚 Topics
+
+- Arrays
+- Hashing
+- Hash Set
+
+---
+
+## 💡 Approach
+
+Use an unordered_set for fast average O(1) lookups.
+
+For every number, check whether `num - 1` exists.
+
+If it does not exist, the current number is the
+start of a consecutive sequence.
+
+Then keep checking:
+
+num + 1
+num + 2
+num + 3
+...
+
+until the sequence ends.
+
+---
+
+## 🧪 Example
+
+Input:
+
+[100,4,200,1,3,2]
+
+Output:
+
+4
+
+Longest sequence:
+
+[1,2,3,4]
+
+---
+
+## 🔍 Key Idea
+
+Only start counting when:
+
+`num - 1` does not exist.
+
+This prevents repeatedly checking the same sequence.
+
+---
+
+## ⚡ Complexity
+
+Time Complexity: O(n) average
+
+Space Complexity: O(n)
+
+---
+
+## 🧠 Key Learning
+
+Hash Sets can be extremely useful when we need
+fast existence checks.
+
+Pattern:
+
+Hash Set → Find Start → Expand → Track Maximum
+
+---
+
+## ✅ Status
+
+Accepted ✔️
+
+
+##Code
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+
+        unordered_set<int> st(nums.begin(), nums.end());
+
+        int longest = 0;
+
+        for (int num : st) {
+
+            if (!st.count(num - 1)) {
+
+                int current = num;
+                int length = 1;
+
+                while (st.count(current + 1)) {
+                    current++;
+                    length++;
+                }
+
+                longest = max(longest, length);
+            }
+        }
+
+        return longest;
+    }
+};
+
+int main() {
+
+    Solution obj;
+
+    vector<int> nums = {100, 4, 200, 1, 3, 2};
+
+    int answer = obj.longestConsecutive(nums);
+
+    cout << "Longest Consecutive Sequence: "
+         << answer << endl;
+
+    return 0;
+}
