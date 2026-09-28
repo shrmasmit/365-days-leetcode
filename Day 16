@@ -1,0 +1,156 @@
+# 🚀 Day 16 - Rotate Image
+
+## 📌 Problem
+
+LeetCode #48 - Rotate Image
+
+Given an n x n matrix, rotate the matrix
+90 degrees clockwise.
+
+The rotation must be performed in-place.
+
+---
+
+## 🏷️ Difficulty
+
+Medium
+
+---
+
+## 📚 Topics
+
+- Arrays
+- Matrix
+- Math
+
+---
+
+## 💡 Approach
+
+Use two simple operations:
+
+1. Transpose the matrix
+2. Reverse every row
+
+### Step 1: Transpose
+
+Swap:
+
+matrix[i][j]
+
+with:
+
+matrix[j][i]
+
+### Step 2: Reverse Every Row
+
+Reverse each row individually.
+
+---
+
+## 🧪 Example
+
+Input:
+
+[
+ [1,2,3],
+ [4,5,6],
+ [7,8,9]
+]
+
+Output:
+
+[
+ [7,4,1],
+ [8,5,2],
+ [9,6,3]
+]
+
+---
+
+## 🔍 Pattern
+
+Transpose → Reverse Rows
+
+---
+
+## ⚡ Complexity
+
+Time Complexity: O(n²)
+
+Space Complexity: O(1)
+
+---
+
+## 🧠 Key Learning
+
+A complex matrix rotation can be broken down
+into two simple in-place operations.
+
+Transpose + Reverse = 90° Clockwise Rotation
+
+---
+
+## 🎯 Important Detail
+
+During transpose, use:
+
+j = i + 1
+
+to avoid swapping the same pair twice.
+
+---
+
+## ✅ Status
+
+Accepted ✔️
+
+##Code
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+
+        int n = matrix.size();
+
+        // Transpose
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                swap(matrix[i][j], matrix[j][i]);
+            }
+        }
+
+        // Reverse every row
+        for (int i = 0; i < n; i++) {
+            reverse(matrix[i].begin(), matrix[i].end());
+        }
+    }
+};
+
+int main() {
+
+    Solution obj;
+
+    vector<vector<int>> matrix = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    obj.rotate(matrix);
+
+    for (auto& row : matrix) {
+        for (int x : row) {
+            cout << x << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
