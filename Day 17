@@ -1,0 +1,186 @@
+# 🚀 Day 17 - Spiral Matrix
+
+## 📌 Problem
+
+LeetCode #54 - Spiral Matrix
+
+Given an m x n matrix, return all elements
+of the matrix in spiral order.
+
+---
+
+## 🏷️ Difficulty
+
+Medium
+
+---
+
+## 📚 Topics
+
+- Arrays
+- Matrix
+- Simulation
+- Traversal
+
+---
+
+## 💡 Approach
+
+Use four boundaries:
+
+- top
+- bottom
+- left
+- right
+
+Traverse the matrix in four directions:
+
+1. Left → Right
+2. Top → Bottom
+3. Right → Left
+4. Bottom → Top
+
+After each traversal, shrink the corresponding boundary.
+
+---
+
+## 🔄 Pattern
+
+Right → Down → Left → Up
+
+---
+
+## 🧪 Example
+
+Input:
+
+[
+ [1,2,3],
+ [4,5,6],
+ [7,8,9]
+]
+
+Output:
+
+[1,2,3,6,9,8,7,4,5]
+
+---
+
+## ⚡ Complexity
+
+Time Complexity: O(m × n)
+
+Space Complexity: O(1) auxiliary space
+
+---
+
+## 🧠 Key Learning
+
+Matrix problems become easier when we carefully
+track the boundaries.
+
+The four-pointer technique provides a clean way
+to perform spiral traversal.
+
+---
+
+## ⚠️ Important Detail
+
+Use boundary checks before traversing the
+bottom row and left column to avoid duplicate elements.
+
+---
+
+## 🔑 Pattern to Remember
+
+top
+bottom
+left
+right
+
+RIGHT → DOWN → LEFT → UP
+
+---
+
+## ✅ Status
+
+
+
+##Code
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+
+        vector<int> ans;
+
+        int m = matrix.size();
+        int n = matrix[0].size();
+
+        int top = 0;
+        int bottom = m - 1;
+        int left = 0;
+        int right = n - 1;
+
+        while (top <= bottom && left <= right) {
+
+            // Left → Right
+            for (int j = left; j <= right; j++) {
+                ans.push_back(matrix[top][j]);
+            }
+            top++;
+
+            // Top → Bottom
+            for (int i = top; i <= bottom; i++) {
+                ans.push_back(matrix[i][right]);
+            }
+            right--;
+
+            // Right → Left
+            if (top <= bottom) {
+                for (int j = right; j >= left; j--) {
+                    ans.push_back(matrix[bottom][j]);
+                }
+                bottom--;
+            }
+
+            // Bottom → Top
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    ans.push_back(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+
+        return ans;
+    }
+};
+
+int main() {
+
+    Solution obj;
+
+    vector<vector<int>> matrix = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    vector<int> result = obj.spiralOrder(matrix);
+
+    cout << "Spiral Order: ";
+
+    for (int x : result) {
+        cout << x << " ";
+    }
+
+    return 0;
+}
+
+Accepted ✔️
