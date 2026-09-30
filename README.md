@@ -26,4 +26,10 @@ My goal is to strengthen my Data Structures & Algorithms skills, improve problem
 | 9 | Missing Number | Easy | Arrays Math Bit Manipulation XOR | ✅ |
 | 10 | Max Consecutive Ones | Easy | Arrays Two Pointers Sliding Window Counting | ✅ |
 | 11 | Sort Colors | Medium | Arrays Two Pointers Three Pointers Dutch National Flag In-place Algorithm | ✅ |
+| 12 | Majority Element | Easy | Arrays Hashing Divide & Conquer Boyer-Moore Voting Algorithm | ✅ |
+| 13 | Rearrange Array Elements by Sign | Medium | - Arrays Two Pointers Simulation Array Manipulation | ✅ |
+| 14 |  Longest Consecutive Sequence | Medium |  Arrays Hashing Hash Set | ✅ |
+| 15 | Set Matrix Zeroes | Medium |  Arrays Matrix In-Place Manipulation | ✅ |
+| 16 | Rotate Images | Medium | Arrays Matrix Math | ✅ |
+| 17 | Spiral Matrix | Medium |  Arrays Matrix Simulation Traversal | ✅ |
 
