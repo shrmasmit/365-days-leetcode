@@ -1,0 +1,175 @@
+# 🚀 Day 18 - Capacity To Ship Packages Within D Days
+
+## 📌 Problem
+
+LeetCode #1011 - Capacity To Ship Packages Within D Days
+
+Given an array of package weights and a number of days,
+find the minimum ship capacity required to ship all
+packages within the given number of days.
+
+Packages must be shipped in the original order.
+
+---
+
+## 🏷️ Difficulty
+
+Medium
+
+---
+
+## 📚 Topics
+
+- Arrays
+- Binary Search
+- Greedy
+
+---
+
+## 💡 Approach
+
+Binary Search on Answer
+
+1. Find the maximum package weight.
+2. Calculate the sum of all package weights.
+3. Apply binary search between these two values.
+4. For every mid capacity, simulate the shipping process.
+5. Count how many days are required.
+6. If the required days are within the limit,
+   search for a smaller capacity.
+7. Otherwise, increase the capacity.
+
+---
+
+## 🧪 Example
+
+Input:
+
+weights = [1,2,3,4,5,6,7,8,9,10]
+days = 5
+
+Output:
+
+15
+
+Shipping:
+
+Day 1: 1, 2, 3, 4, 5
+Day 2: 6, 7
+Day 3: 8
+Day 4: 9
+Day 5: 10
+
+---
+
+## 🔑 Pattern
+
+Binary Search on Answer
+
+Minimum Capacity → Maximum Capacity
+
+Find the smallest feasible capacity.
+
+---
+
+## ⚡ Complexity
+
+Time Complexity: O(N × log(S))
+
+Space Complexity: O(1)
+
+N = Number of packages
+S = Sum of all package weights
+
+---
+
+## 🧠 Key Learning
+
+When a problem asks for the minimum possible
+capacity and feasibility changes monotonically,
+Binary Search on Answer can optimize the solution.
+
+---
+
+## 🎯 Important Concept
+
+If a capacity works, every larger capacity
+will also work.
+
+If a capacity fails, every smaller capacity
+will also fail.
+
+---
+
+## ✅ Status
+
+Accepted ✔️
+
+##Code
+#include <iostream>
+#include <vector>
+#include <numeric>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+
+    bool canShip(vector<int>& weights, int days, int capacity) {
+
+        int requiredDays = 1;
+        int currentLoad = 0;
+
+        for (int weight : weights) {
+
+            if (currentLoad + weight > capacity) {
+                requiredDays++;
+                currentLoad = weight;
+            }
+            else {
+                currentLoad += weight;
+            }
+        }
+
+        return requiredDays <= days;
+    }
+
+    int shipWithinDays(vector<int>& weights, int days) {
+
+        int low = *max_element(weights.begin(), weights.end());
+
+        int high = accumulate(weights.begin(), weights.end(), 0);
+
+        while (low < high) {
+
+            int mid = low + (high - low) / 2;
+
+            if (canShip(weights, days, mid)) {
+                high = mid;
+            }
+            else {
+                low = mid + 1;
+            }
+        }
+
+        return low;
+    }
+};
+
+int main() {
+
+    Solution obj;
+
+    vector<int> weights = {
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    };
+
+    int days = 5;
+
+    int result = obj.shipWithinDays(weights, days);
+
+    cout << "Minimum Ship Capacity: " << result << endl;
+
+    return 0;
+}
