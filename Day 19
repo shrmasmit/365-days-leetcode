@@ -1,0 +1,186 @@
+# 🚀 Day 19 - Split Array Largest Sum
+
+## 📌 Problem
+
+LeetCode #410 - Split Array Largest Sum
+
+Given an integer array nums and an integer k,
+split nums into exactly k non-empty contiguous
+subarrays such that the largest subarray sum
+is minimized.
+
+Return the minimized largest sum.
+
+---
+
+## 🏷️ Difficulty
+
+Hard
+
+---
+
+## 📚 Topics
+
+- Arrays
+- Binary Search
+- Greedy
+- Dynamic Programming
+- Prefix Sum
+
+---
+
+## 💡 Approach
+
+Binary Search on Answer + Greedy
+
+1. Find the maximum element in the array.
+2. Calculate the sum of all elements.
+3. Apply binary search between these two values.
+4. For every mid value, greedily count the
+   number of subarrays required.
+5. If required subarrays <= k, try a smaller
+   maximum sum.
+6. Otherwise, increase the maximum sum.
+
+---
+
+## 🧪 Example
+
+Input:
+
+nums = [7,2,5,10,8]
+k = 2
+
+Output:
+
+18
+
+Optimal Split:
+
+[7,2,5]  -> 14
+[10,8]   -> 18
+
+Largest subarray sum = 18
+
+---
+
+## 🔑 Pattern
+
+Binary Search on Answer
+
+Minimum possible = max(nums)
+Maximum possible = sum(nums)
+
+Find the smallest feasible maximum sum.
+
+---
+
+## ⚡ Complexity
+
+Time Complexity: O(n × log(sum(nums)))
+
+Auxiliary Space Complexity: O(1)
+
+---
+
+## 🧠 Key Learning
+
+When a problem asks to minimize the maximum
+sum among contiguous groups, think about
+Binary Search on Answer.
+
+Use Greedy to check whether a candidate
+maximum sum is feasible.
+
+---
+
+## 🎯 Important Concept
+
+If a maximum sum is feasible, every larger
+maximum sum is also feasible.
+
+If it is not feasible, we need a larger value.
+
+---
+
+## 🔗 Related Problems
+
+- LeetCode #1011 - Capacity To Ship Packages Within D Days
+- LeetCode #875 - Koko Eating Bananas
+- Book Allocation Problem
+- Painter's Partition Problem
+
+---
+
+## ✅ Status
+
+
+
+##Code
+#include <iostream>
+#include <vector>
+#include <numeric>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+
+    bool isPossible(vector<int>& nums, int k, long long maxSum) {
+
+        int subarrays = 1;
+        long long currentSum = 0;
+
+        for (int num : nums) {
+
+            if (currentSum + num > maxSum) {
+                subarrays++;
+                currentSum = num;
+            }
+            else {
+                currentSum += num;
+            }
+        }
+
+        return subarrays <= k;
+    }
+
+    int splitArray(vector<int>& nums, int k) {
+
+        long long low = *max_element(nums.begin(), nums.end());
+
+        long long high = accumulate(nums.begin(), nums.end(), 0LL);
+
+        while (low < high) {
+
+            long long mid = low + (high - low) / 2;
+
+            if (isPossible(nums, k, mid)) {
+                high = mid;
+            }
+            else {
+                low = mid + 1;
+            }
+        }
+
+        return static_cast<int>(low);
+    }
+};
+
+int main() {
+
+    Solution obj;
+
+    vector<int> nums = {7, 2, 5, 10, 8};
+
+    int k = 2;
+
+    int result = obj.splitArray(nums, k);
+
+    cout << "Minimum Largest Subarray Sum: "
+         << result << endl;
+
+    return 0;
+}
+Accepted ✔️
