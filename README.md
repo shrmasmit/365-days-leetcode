@@ -34,4 +34,5 @@ My goal is to strengthen my Data Structures & Algorithms skills, improve problem
 | 17 | Spiral Matrix | Medium |  Arrays Matrix Simulation Traversal | ✅ |
 | 18 | Capacity To Ship Packages Within D Days | Medium | Binary Search / Greedy | ✅ |
 | 19 | Split Array Largest Sum | Hard | Binary Search / Greedy | ✅ |
+| 20 | Search a 2D Matrix | Medium | Matrix / Binary Search | ✅ |
 
