@@ -1,0 +1,185 @@
+# 🚀 Day 20 - Search a 2D Matrix
+
+## 📌 Problem
+
+LeetCode #74 - Search a 2D Matrix
+
+Given an m x n matrix and a target,
+return true if the target exists in the matrix.
+Otherwise, return false.
+
+Matrix properties:
+
+- Each row is sorted in non-decreasing order.
+- The first element of each row is greater
+  than the last element of the previous row.
+
+---
+
+## 🏷️ Difficulty
+
+Medium
+
+---
+
+## 📚 Topics
+
+- Arrays
+- Matrix
+- Binary Search
+
+---
+
+## 💡 Approach
+
+Binary Search on a Flattened Matrix
+
+1. Treat the matrix as a single sorted array.
+2. Initialize low = 0.
+3. Initialize high = m * n - 1.
+4. Calculate the middle index.
+5. Convert the 1D index into 2D coordinates.
+
+   row = mid / n
+   col = mid % n
+
+6. Compare the matrix element with target.
+7. Adjust the binary search range.
+
+---
+
+## 🧪 Example
+
+Input:
+
+matrix = [
+ [1,3,5,7],
+ [10,11,16,20],
+ [23,30,34,60]
+]
+
+target = 3
+
+Output:
+
+true
+
+---
+
+## 🔑 Pattern
+
+Binary Search on a Virtual 1D Array
+
+row = mid / n
+col = mid % n
+
+---
+
+## ⚡ Complexity
+
+Time Complexity: O(log(m * n))
+
+Auxiliary Space Complexity: O(1)
+
+---
+
+## 🧠 Key Learning
+
+A sorted 2D matrix can sometimes be treated
+as a single sorted 1D array.
+
+Using division and modulo, we can convert
+a virtual index into its matrix coordinates.
+
+---
+
+## 🎯 Important Concept
+
+mid / n gives the row.
+
+mid % n gives the column.
+
+No extra matrix or array is required.
+
+---
+
+## 🔗 Related Problems
+
+- LeetCode #240 - Search a 2D Matrix II
+- LeetCode #33 - Search in Rotated Sorted Array
+- LeetCode #704 - Binary Search
+- LeetCode #35 - Search Insert Position
+
+---
+
+## ✅ Status
+
+Accepted ✔️
+
+
+###code
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+
+        int m = matrix.size();
+        int n = matrix[0].size();
+
+        int low = 0;
+        int high = m * n - 1;
+
+        while (low <= high) {
+
+            int mid = low + (high - low) / 2;
+
+            int row = mid / n;
+            int col = mid % n;
+
+            int value = matrix[row][col];
+
+            if (value == target) {
+                return true;
+            }
+            else if (value < target) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
+
+        return false;
+    }
+};
+
+int main() {
+
+    Solution obj;
+
+    vector<vector<int>> matrix = {
+        {1, 3, 5, 7},
+        {10, 11, 16, 20},
+        {23, 30, 34, 60}
+    };
+
+    int target = 3;
+
+    bool result = obj.searchMatrix(matrix, target);
+
+    if (result) {
+        cout << "Target Found!" << endl;
+    }
+    else {
+        cout << "Target Not Found!" << endl;
+    }
+
+    return 0;
+}
+
+
+
