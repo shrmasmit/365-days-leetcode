@@ -35,4 +35,5 @@ My goal is to strengthen my Data Structures & Algorithms skills, improve problem
 | 18 | Capacity To Ship Packages Within D Days | Medium | Binary Search / Greedy | ✅ |
 | 19 | Split Array Largest Sum | Hard | Binary Search / Greedy | ✅ |
 | 20 | Search a 2D Matrix | Medium | Matrix / Binary Search | ✅ |
+| 21 | Delete the Middle Node of a Linked List | Medium | Linked List / Two Pointers | ✅ |
 
