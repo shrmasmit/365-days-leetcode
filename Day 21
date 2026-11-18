@@ -1,0 +1,191 @@
+# 🚀 Day 21 - Delete the Middle Node of a Linked List
+
+## 📌 Problem
+
+LeetCode #2095 - Delete the Middle Node
+of a Linked List
+
+Given the head of a linked list, delete its
+middle node and return the modified list.
+
+The middle node is at index floor(n / 2),
+using zero-based indexing.
+
+---
+
+## 🏷️ Difficulty
+
+Medium
+
+---
+
+## 📚 Topics
+
+- Linked List
+- Two Pointers
+- Slow and Fast Pointers
+
+---
+
+## 💡 Approach
+
+Use Slow and Fast Pointers.
+
+1. Create a dummy node before the head.
+2. Initialize slow at dummy and fast at head.
+3. Move slow one step at a time.
+4. Move fast two steps at a time.
+5. When fast reaches the end, slow is
+   immediately before the middle node.
+6. Delete the middle node by updating
+   slow->next.
+
+---
+
+## 🧪 Example
+
+Input:
+
+1 -> 3 -> 4 -> 7 -> 1 -> 2 -> 6
+
+Output:
+
+1 -> 3 -> 4 -> 1 -> 2 -> 6
+
+The middle node with value 7 is deleted.
+
+---
+
+## 🔑 Pattern
+
+Slow and Fast Pointers
+
+slow → 1 step
+fast → 2 steps
+
+---
+
+## ⚡ Complexity
+
+Time Complexity: O(n)
+
+Auxiliary Space Complexity: O(1)
+
+---
+
+## 🧠 Key Learning
+
+The slow and fast pointer technique helps
+find the middle of a linked list in one pass.
+
+A dummy node makes deletion easier,
+especially for a single-node linked list.
+
+---
+
+## 🎯 Important Concept
+
+slow->next = slow->next->next;
+
+This skips the middle node and reconnects
+the linked list.
+
+---
+
+## 🔗 Related Problems
+
+- LeetCode #876 - Middle of the Linked List
+- LeetCode #141 - Linked List Cycle
+- LeetCode #19 - Remove Nth Node From End
+- LeetCode #206 - Reverse Linked List
+
+---
+
+## ✅ Status
+
+
+##Code
+#include <iostream>
+using namespace std;
+
+struct ListNode {
+    int val;
+    ListNode* next;
+
+    ListNode(int x) {
+        val = x;
+        next = nullptr;
+    }
+};
+
+class Solution {
+public:
+    ListNode* deleteMiddle(ListNode* head) {
+
+        ListNode dummy(0);
+        dummy.next = head;
+
+        ListNode* slow = &dummy;
+        ListNode* fast = head;
+
+        while (fast != nullptr && fast->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        ListNode* middle = slow->next;
+
+        slow->next = middle->next;
+
+        delete middle;
+
+        return dummy.next;
+    }
+};
+
+void printList(ListNode* head) {
+    while (head != nullptr) {
+        cout << head->val;
+
+        if (head->next != nullptr) {
+            cout << " -> ";
+        }
+
+        head = head->next;
+    }
+
+    cout << endl;
+}
+
+int main() {
+
+    // Creating: 1 -> 3 -> 4 -> 7 -> 1 -> 2 -> 6
+    ListNode* head = new ListNode(1);
+
+    head->next = new ListNode(3);
+    head->next->next = new ListNode(4);
+    head->next->next->next = new ListNode(7);
+    head->next->next->next->next = new ListNode(1);
+    head->next->next->next->next->next = new ListNode(2);
+    head->next->next->next->next->next->next = new ListNode(6);
+
+    Solution obj;
+
+    cout << "Original List: ";
+    printList(head);
+
+    head = obj.deleteMiddle(head);
+
+    cout << "After Deletion: ";
+    printList(head);
+
+    // Free remaining nodes
+    while (head != nullptr) {
+        ListNode* temp = head;
+        head = head->next;
+        delete temp;
+    }
+
+    return 0;
+}
+Accepted ✔️
